@@ -11,8 +11,8 @@ const App = () => (
       <Navbar />
       <Header />
     </div>
-    <Brand />
     <Trading />
+    <Brand />
     <Features />
     <Cta />
     <Blog />
