@@ -4,7 +4,7 @@ import { Feature } from '../../components/'
 
 const Trading = () => {
   return (
-    <div className='jsa__jsaxtrade section__margin' id="jstrade">
+    <div className='jsa__jsaxtrade section__margin'>
       <div className="jsa__jsaxtrade-feature">
       <Feature title="Tools of the TRADE" 
       text="Logging a trade only takes a few moments, but the potential rewards far outweigh 
