@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import './navbar.css';
 import logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 
 const Menu = () => (
   <>
     <p><a href='#'>Home</a></p>
-    <p><a href='#'>Blog</a></p>
+    <p><Link to='/blog'>Blog</Link></p>
     <p><a href='#'>Trader</a></p>
     <p><a href='#'>Investor</a></p>
   </>
