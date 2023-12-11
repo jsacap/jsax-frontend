@@ -2,7 +2,7 @@ import React from 'react';
 import { Footer, Blog, Features, Trading, Header } from './containers';
 import { Cta, Brand, Navbar } from './components';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { BlogPage } from './pages';
+import { BlogPage, ArticlePage } from './pages';
 import './App.css';
 
 const App = () => (
@@ -13,6 +13,7 @@ const App = () => (
       </div>
       <Routes>
         <Route path="/blog" element={<BlogPageLayout />} />
+        <Route path="/blog/article/:id" element={<ArticlePage />} />
         <Route path="/" element={<HomeLayout />} />
       </Routes>
       <Footer />

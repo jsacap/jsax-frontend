@@ -1,30 +1,41 @@
 import './articlePage.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const ArticlePage = () => {
-    const location = useLocation();
-    const { state } = location;
+  const { id } = useParams();
+  const [article, setArticle] = useState(null);
 
-    if (!state) {
-        return <div>No Article Available </div>;
-    }
+  useEffect(() => {
+    const apiUrl = `http://localhost:8000/blog/api/${id}/`;  // Use id directly
+    axios.get(apiUrl)
+      .then(response => {
+        setArticle(response.data);
+      })
+      .catch(error => {
+        console.error('Failed to fetch article data', error);
+      });
+  }, [id]);
 
-    const { title, coverPhoto, created, content } = state;
+  if (!article) {
+    return <div>Loading...</div>;
+  }
 
-    return (
-        <div>
-            <div>
-                <img src={coverPhoto} alt='Article cover photo' />
-                <h1>{title}</h1>
-                <p>{created}</p>
-                <p>{parse(content)}</p>
-            </div>
-            <div>
-            </div>
-        </div>
-    );
-}
+  const { title, coverPhoto, created, content } = article;
+
+  return (
+    <div>
+      <div>
+        <img src={coverPhoto} alt='Article cover photo' />
+        <h1>{title}</h1>
+        <p>{created}</p>
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </div>
+      <div>{/* Additional content if needed */}</div>
+    </div>
+  );
+};
 
 export default ArticlePage;

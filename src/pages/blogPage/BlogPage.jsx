@@ -3,6 +3,7 @@ import './blogPage.css';
 import Article from '../../components/article/Article';
 import axios from 'axios';
 import parse from 'html-react-parser';
+import { Link } from 'react-router-dom';
 
 const BlogPage = () => {
   const [articles, setArticles] = useState([]);
@@ -24,15 +25,26 @@ const BlogPage = () => {
         <h1 className='gradient__text'>BLOG</h1>
       </div>
       <div className='jsa__blog-page-container'>
-        {articles.map((article, index) => (
-          <Article
-            key={index}
-            coverPhoto={`http://localhost:8000${article.cover_photo}`}
-            title={article.title}
-            created={article.created}
-            content={parse(`${article.content.slice(0, 300)}...`)}
-          />
-        ))}
+        {articles.map((article, index) => {
+console.log(article.id)
+
+          return (
+            <div key={article.id}>
+              <Article
+              id={article.id}
+                coverPhoto={`http://localhost:8000${article.cover_photo}`}
+                title={article.title}
+                created={article.created}
+                content={parse(`${article.content.slice(0, 300)}...`)}
+              />
+              <Link
+            to={`/blog/article/${article?.id || ''}`}
+  >
+                Read More
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
