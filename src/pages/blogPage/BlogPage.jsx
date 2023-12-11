@@ -31,7 +31,7 @@ console.log(article.id)
           return (
             <div key={article.id}>
               <Article
-              id={article.id}
+                id={article.id}
                 coverPhoto={`http://localhost:8000${article.cover_photo}`}
                 title={article.title}
                 created={article.created}

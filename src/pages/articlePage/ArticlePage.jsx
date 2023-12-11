@@ -9,7 +9,7 @@ const ArticlePage = () => {
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    const apiUrl = `http://localhost:8000/blog/api/${id}/`;  // Use id directly
+    const apiUrl = `http://localhost:8000/blog/api/${id}/`; 
     axios.get(apiUrl)
       .then(response => {
         setArticle(response.data);
@@ -22,18 +22,24 @@ const ArticlePage = () => {
   if (!article) {
     return <div>Loading...</div>;
   }
+  
+  const { title, created, content } = article;
+  const coverPhotoUrl = `http://localhost:8000${article.cover_photo}`;
 
-  const { title, coverPhoto, created, content } = article;
+  const formattedDate = new Date(created).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   return (
-    <div>
-      <div>
-        <img src={coverPhoto} alt='Article cover photo' />
+    <div className='jsa__articlepage'>
+        <img src={coverPhotoUrl} alt='Article cover photo' />
         <h1>{title}</h1>
-        <p>{created}</p>
+      <div className='jsa__articlepage-content'>
+        <p className='jsa__articlepage-date'>Written on {formattedDate}</p>
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </div>
-      <div>{/* Additional content if needed */}</div>
     </div>
   );
 };
