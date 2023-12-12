@@ -12,7 +12,8 @@ const BlogPage = () => {
     const apiUrl = 'http://localhost:8000/blog/api/';
     axios.get(apiUrl)
       .then(response => {
-        setArticles(response.data);
+        const filteredArticles = response.data.filter(article => !article.tags.some(tag => tag.name === 'Private_Investor'));
+        setArticles(filteredArticles);
       })
       .catch(error => {
         console.error('Failed to fetch data', error);
@@ -26,7 +27,7 @@ const BlogPage = () => {
       </div>
       <div className='jsa__blog-page-container'>
         {articles.map((article, index) => {
-console.log(article.id)
+console.log(article.tags)
 
           return (
             <div key={article.id}>
@@ -36,12 +37,9 @@ console.log(article.id)
                 title={article.title}
                 created={article.created}
                 content={parse(`${article.content.slice(0, 300)}...`)}
+                tags={article.tags.map(tag => tag.name).join('  ')}
               />
-              <Link
-            to={`/blog/article/${article?.id || ''}`}
-  >
-                Read More
-              </Link>
+              
             </div>
           );
         })}

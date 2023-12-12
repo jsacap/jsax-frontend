@@ -58,3 +58,7 @@
         line-height: 25p;
     }
 }
+
+.jsa__blog-tags {
+    color: var(--gradient-text);
+}

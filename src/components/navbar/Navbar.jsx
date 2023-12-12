@@ -9,8 +9,8 @@ const Menu = () => (
   <>
     <p><Link to='/'>Home</Link></p>
     <p><Link to='/blog'>Blog</Link></p>
-    <p><a href='#'>Trader</a></p>
-    <p><a href='#'>Investor</a></p>
+    <p><a href='https://jsax-production.up.railway.app/trading/dashboard/'>Trader</a></p>
+    <p><a href='https://jsax-production.up.railway.app/investor/'>Investor</a></p>
   </>
 )
 
